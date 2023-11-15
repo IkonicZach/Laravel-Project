@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProductInsertFormRequest;
+use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -25,10 +28,21 @@ class PostController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ProductInsertFormRequest $request)
     {
-        return $request->all();
-        // return "Hello";
+        $file = $request->file('file');
+        $filename = uniqid() . '_' . $file->getClientOriginalName();
+        $file->move(public_path() . '/uploads/', $filename);
+        // Storage::put('uploads/' . $file->getClientOriginalName(),file_get_contents($file));
+
+        Post::create([
+            'title' => $request->get('title'),
+            'description' => $request->get('description'),
+            'content' => $request->get('content'),
+            'imgs' => $filename
+        ]);
+
+        return redirect('/posts/create')->with('status', 'Created successfully!'); 
     }
 
     /**

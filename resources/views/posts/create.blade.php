@@ -6,10 +6,18 @@
 <div class="container">
     <div class="w-75 rounder border p-5 shadow-lg" style="margin: 0 auto;">
         <h1>Create a <span class="text-echo">new</span> blog</h1>
-        <form class="row g-3" method="post">
+        <form class="row g-3" method="POST" enctype="multipart/form-data">
+            @foreach($errors->all() as $error)
+                <p class="alert alert-danger">{{$error}}</p>
+            @endforeach
+            {{csrf_field()}}
+
+            @if(session('status'))
+                <p class="alert alert-success">{{session('status')}}</p>
+            @endif
             <div class="">
-                <label for="inputAddress" class="form-label">Title</label>
-                <input type="text" name="title" class="form-control" id="inputAddress" placeholder="Name your blog">
+                <label for="title" class="form-label">Title</label>
+                <input type="text" name="title" class="form-control" id="title" placeholder="Name your blog">
             </div>
             <div class="">
                 <label for="description" class="form-label">Description</label>
