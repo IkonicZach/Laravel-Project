@@ -1,0 +1,11 @@
+/* importing _custom.scss from the same directory containing the following files 
+   resources/assets/sass/{app.scss, _custom.scss, _variables.scss} */
+
+// import _custom.scss
+@import "custom";
+
+// import _variables.scss (custom variables for bootstrap-sass)
+@import "variables";
+
+// importing bootstrap-sass from node modules (if you are using bootstrap)
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
