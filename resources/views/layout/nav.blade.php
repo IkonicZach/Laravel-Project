@@ -11,14 +11,23 @@
             <div class="nav_left d-lg-flex align-items-center" style="padding-right: 6.6rem;">
                 <nav>
                     <div class="nav d-block d-lg-flex nav-tabs" id="nav-tab" role="tablist">
-                        <div class="nav-link active position-relative" id="home-tab" data-bs-toggle="tab" data-bs-target="#home"
-                            type="button" role="tab" aria-controls="home" aria-selected="true">
+                        <div class="nav-link active position-relative" id="home-tab" data-bs-toggle="tab"
+                            data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">
                             Categories
                         </div>
                         <button class="nav-link" id="about-tab" data-bs-toggle="tab" data-bs-target="#about"
                             type="button" role="tab" aria-controls="about" aria-selected="false">About</button>
-                        <button class="nav-link" id="timing-tab" data-bs-toggle="tab" data-bs-target="#timing"
-                            type="button" role="tab" aria-controls="timing" aria-selected="false">Bookmarks</button>
+                        <button class="nav-link position-relative" id="timing-tab" data-bs-toggle="tab" data-bs-target="#timing"
+                            type="button" role="tab" aria-controls="timing" aria-selected="false">
+                            <a href="/posts/bookmarks" class="text-white">Bookmarks</a>
+                            <span
+                                class="position-absolute top-30 start-100 translate-middle badge rounded-pill bg-danger">
+                                @if(session('items'))
+                                {{count(session('items'))}}
+                                @endif
+                                <span class="visually-hidden">unread messages</span>
+                            </span>
+                        </button>
                         <div class="dropdown p-0">
                             <button class="nav-link dropdown-toggle" type="button" data-bs-toggle="dropdown"
                                 aria-expanded="false">

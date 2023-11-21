@@ -37,6 +37,9 @@ textarea {
 .rounder-top {
     border-radius: 2rem 2rem 0 0 !important;
 }
+.rounder-left {
+    border-radius: 2rem 0 0 2rem !important;
+}
 .form-check-input:checked {
     background-color: #8F00FF !important;
     border-color: #8F00FF !important;
@@ -158,4 +161,9 @@ input.search_input::placeholder {
     position: absolute;
     top: 3%;
     right: 3%;
+}
+
+.card-img-top {
+    object-fit: cover !important;
+    height: 30vh !important;
 }

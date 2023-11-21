@@ -38,7 +38,7 @@
             </div>
             <div class="col-md-6">
                 <label for="formFile" class="form-label">Upload an image</label>
-                <input class="form-control" name="file" type="file" id="formFile">
+                <input class="form-control" name="file[]" type="file" id="formFile" multiple>
             </div>
             <div class="col-12">
                 <div class="form-check">

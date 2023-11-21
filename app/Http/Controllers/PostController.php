@@ -14,7 +14,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+
     }
 
     /**
@@ -30,19 +30,29 @@ class PostController extends Controller
      */
     public function store(ProductInsertFormRequest $request)
     {
-        $file = $request->file('file');
-        $filename = uniqid() . '_' . $file->getClientOriginalName();
-        $file->move(public_path() . '/uploads/', $filename);
-        // Storage::put('uploads/' . $file->getClientOriginalName(),file_get_contents($file));
+        $files = $request->file('file');
+        $file_array = array();
+            foreach ($files as $file) {
+                $filename = 'echo_' . uniqid() . '_' . $file->getClientOriginalName();
+                array_push($file_array, $filename);
+                $file->move(public_path() . '/uploads/', $filename);
+            }
+        for ($i = 0; $i < count($file_array); $i++) {
+            echo $file_array[$i] . "<br>";
+        }
+        // $file = $request->file('file');
+        // $filename = uniqid() . '_' . $file->getClientOriginalName();
+        // $file->move(public_path() . '/uploads/', $filename);
+        // // Storage::put('uploads/' . $file->getClientOriginalName(),file_get_contents($file));
 
         Post::create([
             'title' => $request->get('title'),
             'description' => $request->get('description'),
             'content' => $request->get('content'),
-            'imgs' => $filename
+            'imgs' => serialize($file_array)
         ]);
 
-        return redirect('/posts/create')->with('status', 'Created successfully!'); 
+        return redirect('/posts/create')->with('status', 'Created successfully!');
     }
 
     /**
